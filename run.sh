@@ -1,10 +1,14 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-# Download the secret base64 file and decode to script
-curl -sL https://raw.githubusercontent.com/termuxtoolshub/operator-lookup/main/secret.txt | base64 -d > lookup.sh
+echo "📥 Downloading script..."
+curl -sL https://raw.githubusercontent.com/termuxtoolshub/operator-lookup/main/secret.txt -o secret.txt
 
-# Run the decoded script interactively
+echo "🔓 Decoding script..."
+base64 -d secret.txt > lookup.sh
+chmod +x lookup.sh
+
+echo "🚀 Running script..."
 bash lookup.sh
 
-# Delete temp file
-rm lookup.sh
+echo "🧹 Cleaning up..."
+rm -f secret.txt lookup.sh
